@@ -25,7 +25,7 @@ NTSTATUS Hook(uintptr_t _Reqest)
 
 NTSTATUS DriverEntry()
 {
-    uintptr_t Base = Utils::GetModulesBase(skCrypt("win32k.sys").decrypt());
+    uintptr_t Base = Utils::GetModulesBase(skCrypt("win32k.sys"));
 
     uintptr_t Address = Base + 414408;
 
@@ -35,5 +35,5 @@ NTSTATUS DriverEntry()
     Clean::CleanPiDDBCache();
     Clean::CleanUnloadedDrivers();
 
-	return STATUS_SUCCESS;
+    return STATUS_SUCCESS;
 }
