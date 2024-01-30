@@ -24,7 +24,7 @@ BOOLEAN Clean::CleanUnloadedDrivers()
 
 	for (ULONG i = 0; i < Modules->NumberOfModules; i++)
 	{
-		if (!strcmp((char*)Module[i].FullPathName, skCrypt("\\SystemRoot\\system32\\ntoskrnl.exe").decrypt()))
+		if (!strcmp((char*)Module[i].FullPathName, skCrypt("\\SystemRoot\\system32\\ntoskrnl.exe")))
 		{
 			NtoskrnlBase = (UINT64)Module[i].ImageBase;
 			NtoskrnlSize = (UINT64)Module[i].ImageSize;
@@ -40,7 +40,7 @@ BOOLEAN Clean::CleanUnloadedDrivers()
 		return false;
 	}
 
-	UINT64 MmUnloadedDriversPtr = Utils::FindPattern((UINT64)NtoskrnlBase, (UINT64)NtoskrnlSize, (BYTE*)(LPCSTR)skCrypt("\x4C\x8B\x00\x00\x00\x00\x00\x4C\x8B\xC9\x4D\x85\x00\x74").decrypt(), (PCHAR)skCrypt("xx?????xxxxx?x").decrypt());
+	UINT64 MmUnloadedDriversPtr = Utils::FindPattern((UINT64)NtoskrnlBase, (UINT64)NtoskrnlSize, (BYTE*)(LPCSTR)skCrypt("\x4C\x8B\x00\x00\x00\x00\x00\x4C\x8B\xC9\x4D\x85\x00\x74"), (PCHAR)skCrypt("xx?????xxxxx?x"));
 
 	if (!MmUnloadedDriversPtr)
 	{
@@ -78,7 +78,7 @@ void Clean::CleanPiDDBCache()
 
 	for (ULONG i = 0; i < Modules->NumberOfModules; i++)
 	{
-		if (!strcmp((char*)Module[i].FullPathName, skCrypt("\\SystemRoot\\system32\\ntoskrnl.exe").decrypt()))
+		if (!strcmp((char*)Module[i].FullPathName, skCrypt("\\SystemRoot\\system32\\ntoskrnl.exe")))
 		{
 			NtoskrnlBase = (UINT64)Module[i].ImageBase;
 			NtoskrnlSize = (UINT64)Module[i].ImageSize;
@@ -90,15 +90,15 @@ void Clean::CleanPiDDBCache()
 		ExFreePoolWithTag(Modules, 0);
 
 	PRTL_AVL_TABLE PiDDBCacheTable;
-	PiDDBCacheTable = (PRTL_AVL_TABLE)Utils::Dereference(Utils::FindPattern2((void*)NtoskrnlBase, NtoskrnlSize, skCrypt("\x48\x8D\x0D\x00\x00\x00\x00\x4C\x89\x35\x00\x00\x00\x00\x49\x8B\xE9").decrypt(), skCrypt("xxx????xxx????xxx").decrypt()), 3);
+	PiDDBCacheTable = (PRTL_AVL_TABLE)Utils::Dereference(Utils::FindPattern2((void*)NtoskrnlBase, NtoskrnlSize, skCrypt("\x48\x8D\x0D\x00\x00\x00\x00\x4C\x89\x35\x00\x00\x00\x00\x49\x8B\xE9"), skCrypt("xxx????xxx????xxx")), 3);
 
 	if (!PiDDBCacheTable)
 	{
-		PiDDBCacheTable = (PRTL_AVL_TABLE)Utils::Dereference(Utils::FindPattern2((void*)NtoskrnlBase, NtoskrnlSize, skCrypt("\x48\x8D\x0D\x00\x00\x00\x00\x4C\x89\x35\x00\x00\x00\x00\xBB\x00\x00\x00\x00").decrypt(), skCrypt("xxx????xxx????x????").decrypt()), 3);
+		PiDDBCacheTable = (PRTL_AVL_TABLE)Utils::Dereference(Utils::FindPattern2((void*)NtoskrnlBase, NtoskrnlSize, skCrypt("\x48\x8D\x0D\x00\x00\x00\x00\x4C\x89\x35\x00\x00\x00\x00\xBB\x00\x00\x00\x00"), skCrypt("xxx????xxx????x????")), 3);
 
 		if (!PiDDBCacheTable)
 		{
-			PiDDBCacheTable = (PRTL_AVL_TABLE)Utils::Dereference(Utils::FindPattern2((void*)NtoskrnlBase, NtoskrnlSize, skCrypt("\x48\x8D\x0D\x00\x00\x00\x00\xE8\x00\x00\x00\x00\x3D\x00\x00\x00\x00\x0F\x83").decrypt(), skCrypt("xxx????x????x????xx").decrypt()), 3);
+			PiDDBCacheTable = (PRTL_AVL_TABLE)Utils::Dereference(Utils::FindPattern2((void*)NtoskrnlBase, NtoskrnlSize, skCrypt("\x48\x8D\x0D\x00\x00\x00\x00\xE8\x00\x00\x00\x00\x3D\x00\x00\x00\x00\x0F\x83"), skCrypt("xxx????x????x????xx")), 3);
 
 			uintptr_t Entryaddress = uintptr_t(PiDDBCacheTable->BalancedRoot.RightChild) + sizeof(RTL_BALANCED_LINKS);
 			PiDDBCache* Entry = (PiDDBCache*)(Entryaddress);
