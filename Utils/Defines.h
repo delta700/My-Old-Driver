@@ -55,14 +55,5 @@ typedef struct RtlProcessModules
 	RtlProcessModuleInformation Modules[1];
 } RtlProcessModules, * pRtlProcessModules;
 
-struct PiDDBCache
-{
-	LIST_ENTRY List;
-	UNICODE_STRING DriverName;
-	ULONG TimeDateStamp;
-	NTSTATUS LoadStatus;
-	char _0x0028[16];
-};
-
 extern "C" NTKERNELAPI NTSTATUS ZwQuerySystemInformation(ULONG InfoClass, PVOID Buffer, ULONG Length, PULONG ReturnLength);
 extern "C" NTKERNELAPI PVOID PsGetProcessSectionBaseAddress(__in PEPROCESS Process);
