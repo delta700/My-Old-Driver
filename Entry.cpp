@@ -32,7 +32,6 @@ NTSTATUS DriverEntry()
     uintptr_t Pointer = *reinterpret_cast<uintptr_t*>(Address);
     *reinterpret_cast<uintptr_t*>(Address) = reinterpret_cast<uintptr_t>(&Hook);
 
-    Clean::CleanPiDDBCache();
     Clean::CleanUnloadedDrivers();
 
     return STATUS_SUCCESS;
