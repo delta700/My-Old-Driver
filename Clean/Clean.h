@@ -4,5 +4,4 @@
 namespace Clean
 {
 	BOOLEAN CleanUnloadedDrivers();
-	void CleanPiDDBCache();
 }
