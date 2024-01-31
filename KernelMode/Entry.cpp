@@ -30,7 +30,6 @@ NTSTATUS DriverEntry()
     //NtUserShowSystemCursor
     uintptr_t Address = Base + 0x65800;
 
-    uintptr_t Pointer = *reinterpret_cast<uintptr_t*>(Address);
     *reinterpret_cast<uintptr_t*>(Address) = reinterpret_cast<uintptr_t>(&Hook);
 
     Clean::CleanUnloadedDrivers();
