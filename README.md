@@ -1,2 +1,2 @@
 # Kernel-Driver-Base
-Use WinApi, Read, Write, GetBaseAddress
+Read, Write, GetBaseAddress
