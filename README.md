@@ -1,2 +1,2 @@
 # Kernel-Driver-Base
-Read, Write, GetBaseAddress
+100% Pasted, Read, Write, GetBaseAddress
