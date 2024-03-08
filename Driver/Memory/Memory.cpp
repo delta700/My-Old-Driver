@@ -45,7 +45,7 @@ DWORD Memory::GetUserDirectoryTableBaseOffset()
 	}
 }
 
-ULONG_PTR Memory::GetProcessDirBase(PEPROCESS pProcess)
+uint64_t Memory::GetProcessDirectoryTable(PEPROCESS pProcess)
 {
 	PUCHAR Process = (PUCHAR)pProcess;
 	ULONG_PTR ProcessDirBase = *(PULONG_PTR)(Process + 0x28);
@@ -140,7 +140,7 @@ NTSTATUS Memory::ReadProcessMemory(int Pid, PVOID Read_Address, PVOID Read_Buffe
 	NTSTATUS NtRet = PsLookupProcessByProcessId((HANDLE)Pid, &Process);
 	if (NtRet != STATUS_SUCCESS) return NtRet;
 
-	ULONG_PTR ProcessDirBase = GetProcessDirBase(Process);
+	ULONG_PTR ProcessDirBase = GetProcessDirectoryTable(Process);
 	ObDereferenceObject(Process);
 
 	SIZE_T CurOffset = 0;
@@ -175,7 +175,7 @@ NTSTATUS Memory::WriteProcessMemory(int Pid, PVOID Write_Address, PVOID Write_Bu
 	NTSTATUS NtRet = PsLookupProcessByProcessId((HANDLE)Pid, &Process);
 	if (NtRet != STATUS_SUCCESS) return NtRet;
 
-	ULONG_PTR ProcessDirBase = GetProcessDirBase(Process);
+	ULONG_PTR ProcessDirBase = GetProcessDirectoryTable(Process);
 	ObDereferenceObject(Process);
 
 	SIZE_T CurOffset = 0;
