@@ -3,5 +3,5 @@
 
 namespace Clean
 {
-	bool CleanUnloadedDrivers()
+	bool CleanUnloadedDrivers();
 }
