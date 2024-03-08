@@ -2,9 +2,9 @@
 #include "Clean/Clean.h"
 
 /*
-*  Credit: Hook https://www.unknowncheats.me/forum/anti-cheat-bypass/425352-driver-communication-using-data-ptr-called-function.html
+* Credit: Hook https://www.unknowncheats.me/forum/anti-cheat-bypass/425352-driver-communication-using-data-ptr-called-function.html
 *             
-*  Author: Hxxven https://github.com/hxxven10
+* Author: Hxxven https://github.com/hxxven10
 */
 
 void RequestThread(uintptr_t _Request)
