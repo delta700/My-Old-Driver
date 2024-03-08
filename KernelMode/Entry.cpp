@@ -7,7 +7,7 @@
 *		Author:  hxxven https://github.com/hxxven10
 */
 
-NTSTATUS Hook(uintptr_t _Reqest)
+void RequestThread()
 {
     Reqest* Req = (Reqest*)_Reqest;
 
