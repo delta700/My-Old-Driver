@@ -63,4 +63,3 @@ extern "C"
 	NTKERNELAPI NTSTATUS ZwQuerySystemInformation(ULONG InfoClass, PVOID Buffer, ULONG Length, PULONG ReturnLength);
 	NTKERNELAPI PVOID PsGetProcessSectionBaseAddress(__in PEPROCESS Process);
 }
-
