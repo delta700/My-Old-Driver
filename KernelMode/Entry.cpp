@@ -1,6 +1,12 @@
 #include "Memory/Memory.h"
 #include "Clean/Clean.h"
 
+/*
+*		Credit: Hook https://www.unknowncheats.me/forum/anti-cheat-bypass/425352-driver-communication-using-data-ptr-called-function.html
+*             
+*		Author:  hxxven https://github.com/hxxven10
+*/
+
 NTSTATUS Hook(uintptr_t _Reqest)
 {
     Reqest* Req = (Reqest*)_Reqest;
