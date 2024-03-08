@@ -4,7 +4,7 @@
 namespace Memory
 {
 	DWORD GetUserDirectoryTableBaseOffset();
-	ULONG_PTR GetProcessDirBase(PEPROCESS pProcess);
+	uint64_t GetProcessDirectoryTable(PEPROCESS pProcess);
 
 	PVOID GetBaseAddress(int Pid);
 
