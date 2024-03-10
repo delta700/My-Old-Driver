@@ -169,17 +169,17 @@
     <FilesToPackage Include="$(TargetPath)" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="clean\Clean.cpp" />
-    <ClCompile Include="Entry.cpp" />
-    <ClCompile Include="Memory\Memory.cpp" />
-    <ClCompile Include="Util\Util.cpp" />
+    <ClCompile Include="Source File\Clean\Clean.cpp" />
+    <ClCompile Include="Source File\Main.cpp" />
+    <ClCompile Include="Source File\Memory\Memory.cpp" />
+    <ClCompile Include="Source File\Util\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="clean\Clean.h" />
-    <ClInclude Include="Encrypt\Encrypt_String.h" />
-    <ClInclude Include="Memory\Memory.h" />
-    <ClInclude Include="Util\Defines.h" />
-    <ClInclude Include="Util\Util.h" />
+    <ClInclude Include="Source File\Clean\Clean.h" />
+    <ClInclude Include="Source File\Encrypt\Encrypt_String.h" />
+    <ClInclude Include="Source File\Memory\Memory.h" />
+    <ClInclude Include="Source File\Util\Define.h" />
+    <ClInclude Include="Source File\Util\Util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
