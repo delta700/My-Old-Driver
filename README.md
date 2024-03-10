@@ -6,4 +6,5 @@
 - Only those who can use it can use it as they wish
 
 ## Find Offset
+- https://www.youtube.com/watch?v=6GGQU0KYKFg
 
