@@ -30,7 +30,7 @@ bool Clean::CleanUnloadedDrivers()
 
 	if (NtoskrnlBase <= 0) return false;
 
-	uint64_t MmUnloadedDriversPtr = Util::FindPattern((uint64_t)NtoskrnlBase, (uint64_t)NtoskrnlSize, (BYTE*)(LPCSTR)skCrypt("\x4C\x8B\x00\x00\x00\x00\x00\x4C\x8B\xC9\x4D\x85\x00\x74"), (PCHAR)skCrypt("xx?????xxxxx?x"));
+	uint64_t MmUnloadedDriversPtr = Util::PatternScan((uint64_t)NtoskrnlBase, (uint64_t)NtoskrnlSize, (BYTE*)(LPCSTR)skCrypt("\x4C\x8B\x00\x00\x00\x00\x00\x4C\x8B\xC9\x4D\x85\x00\x74"), (PCHAR)skCrypt("xx?????xxxxx?x"));
 
 	if (!MmUnloadedDriversPtr) return false;
 
