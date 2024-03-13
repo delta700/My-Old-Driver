@@ -9,9 +9,8 @@
 
 void RequestThread(uintptr_t _Request)
 {
-    Request* Req = (Request*)_Request;
-
     DebugPrint("[+] RequestThread Called \n");
+    Request* Req = (Request*)_Request;
 
     if (Req->Request_Base != false)
     {
