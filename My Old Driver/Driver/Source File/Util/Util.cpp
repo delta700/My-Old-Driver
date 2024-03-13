@@ -34,25 +34,25 @@ void* GetSystemInformation(SystemInformationClass InformationClass)
 
 uintptr_t Util::GetModuleBase(const char* Name)
 {
-     const auto to_lower = [](char* string) -> const char*
+	auto to_lower = [](char* string) -> const char*
 	{
 		for (char* pointer = string; *pointer != ('\0'); ++pointer)
 		{
-			*pointer = (char)(short)tolower(*pointer);
+				*pointer = (char)(short)tolower(*pointer);
 		}
 
-		return string;
+			return string;
 	};
 
-	const auto Info = (pRtlProcessModules)GetSystemInformation(SystemModuleInformation);
+	auto Info = (pRtlProcessModules)GetSystemInformation(SystemModuleInformation);
 
 	for (auto i = 0ull; i < Info->NumberOfModules; ++i)
 	{
-		const auto& Module = Info->Modules[i];
+		auto& Module = Info->Modules[i];
 
 		if (strcmp(to_lower((char*)Module.FullPathName + Module.OffsetToFileName), Name) == 0)
 		{
-			const auto Address = Module.ImageBase;
+			auto Address = Module.ImageBase;
 
 			ExFreePool(Info);
 
