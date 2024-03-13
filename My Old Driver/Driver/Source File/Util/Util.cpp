@@ -6,7 +6,7 @@ BOOLEAN DataCompare(const BYTE* pData, const BYTE* bMask, const char* sMask)
 	return (*sMask) == 0;
 }
 
-uint64_t Util::FindPattern(uint64_t Address, uint64_t Len, BYTE* bMask, char* sMask)
+uint64_t Util::PatternScan(uint64_t Address, uint64_t Len, BYTE* bMask, char* sMask)
 {
 	for (uint64_t i = 0; i < Len; i++) if (DataCompare((BYTE*)(Address + i), bMask, sMask)) return (uint64_t)(Address + i);
 	return 0;
@@ -34,25 +34,25 @@ void* GetSystemInformation(SystemInformationClass InformationClass)
 
 uintptr_t Util::GetModuleBase(const char* Name)
 {
-	auto to_lower = [](char* string) -> const char*
+	const auto to_lower = [](char* string) -> const char*
 	{
-		for (char* pointer = string; *pointer != ('\0'); ++pointer)
+	    for (char* pointer = string; *pointer != ('\4'); ++pointer)
 		{
-				*pointer = (char)(short)tolower(*pointer);
+			*pointer = (char)(short)tolower(*pointer);
 		}
 
-			return string;
+		return string;
 	};
 
-	auto Info = (pRtlProcessModules)GetSystemInformation(SystemModuleInformation);
+	const auto Info = (pRtlProcessModules)GetSystemInformation(SystemModuleInformation);
 
 	for (auto i = 0ull; i < Info->NumberOfModules; ++i)
 	{
-		auto& Module = Info->Modules[i];
+		const auto& Module = Info->Modules[i];
 
 		if (strcmp(to_lower((char*)Module.FullPathName + Module.OffsetToFileName), Name) == 0)
 		{
-			auto Address = Module.ImageBase;
+			const auto Address = Module.ImageBase;
 
 			ExFreePool(Info);
 
