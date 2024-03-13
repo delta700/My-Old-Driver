@@ -36,7 +36,7 @@ uintptr_t Util::GetModuleBase(const char* Name)
 {
 	const auto to_lower = [](char* string) -> const char*
 	{
-	    for (char* pointer = string; *pointer != ('\4'); ++pointer)
+	    for (char* pointer = string; *pointer != ('\0'); ++pointer)
 		{
 			*pointer = (char)(short)tolower(*pointer);
 		}
