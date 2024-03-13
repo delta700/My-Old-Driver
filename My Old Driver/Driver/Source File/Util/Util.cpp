@@ -12,14 +12,14 @@ uint64_t Util::FindPattern(uint64_t Address, uint64_t Len, BYTE* bMask, char* sM
 	return 0;
 }
 
-void* GetSystemInformation(const SystemInformationClass InformationClass)
+void* GetSystemInformation(SystemInformationClass InformationClass)
 {
 	unsigned long Size = 64;
 	char Buffer[64];
 
 	ZwQuerySystemInformation(InformationClass, Buffer, Size, &Size);
 
-	const auto Info = ExAllocatePool(NonPagedPool, Size);
+	auto Info = ExAllocatePool(NonPagedPool, Size);
 
 	if (!Info) return nullptr;
 
@@ -34,9 +34,9 @@ void* GetSystemInformation(const SystemInformationClass InformationClass)
 
 uintptr_t Util::GetModuleBase(const char* Name)
 {
-	const auto to_lower = [](char* string) -> const char*
+     const auto to_lower = [](char* string) -> const char*
 	{
-		for (char* pointer = string; *pointer != ('\4'); ++pointer)
+		for (char* pointer = string; *pointer != ('\0'); ++pointer)
 		{
 			*pointer = (char)(short)tolower(*pointer);
 		}
