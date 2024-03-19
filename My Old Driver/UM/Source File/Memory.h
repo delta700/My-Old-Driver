@@ -17,8 +17,8 @@ typedef struct Request
 	BOOLEAN Request_Read;
 	BOOLEAN Request_Write;
 
-	void* Read_Buffer;
-	void* Write_Buffer;
+	PVOID Read_Buffer;
+	PVOID Write_Buffer;
 
 	uintptr_t Address;
 	ULONGLONG Size;
