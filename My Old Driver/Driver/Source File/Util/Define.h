@@ -9,7 +9,7 @@
 
 typedef struct Request
 {
-	ULONG Pid;
+	int Pid;
 	PVOID Base;
 
 	BOOLEAN Request_Base;
@@ -19,7 +19,7 @@ typedef struct Request
 	void* Read_Buffer;
 	void* Write_Buffer;
 
-	UINT_PTR Address;
+	uintptr_t Address;
 	ULONGLONG Size;
 }Request;
 
